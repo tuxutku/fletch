@@ -6,19 +6,19 @@
 # in External_libjpegturbo.cmake.
 
 if (NOT _external_yasm_include)
-    set(_external_yasm_include TRUE)
-    ExternalProject_Add(yasm
-      URL ${yasm_url}
-      URL_MD5 ${yasm_md5}
-      PREFIX ${fletch_BUILD_PREFIX}
-      DOWNLOAD_DIR ${fletch_DOWNLOAD_DIR}
-      CMAKE_GENERATOR ${gen}
-      INSTALL_COMMAND ""
-      CMAKE_ARGS
-        -DCMAKE_BUILD_TYPE=Release
-		-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON_EXECUTABLE}
-        -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
-        -DBUILD_SHARED_LIBS=OFF
+  set(_external_yasm_include TRUE)
+  ExternalProject_Add(yasm
+    URL ${yasm_url}
+    URL_MD5 ${yasm_md5}
+    PREFIX ${fletch_BUILD_PREFIX}
+    DOWNLOAD_DIR ${fletch_DOWNLOAD_DIR}
+    CMAKE_GENERATOR ${gen}
+    INSTALL_COMMAND ""
+    CMAKE_ARGS
+    -DCMAKE_BUILD_TYPE=Release
+    -DPYTHON_EXECUTABLE:FILEPATH=${PYTHON_EXECUTABLE}
+    -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
+    -DBUILD_SHARED_LIBS=OFF
     )
 
     if (WIN32)

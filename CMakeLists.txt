@@ -34,7 +34,7 @@ set(CMAKE_MODULE_PATH ${fletch_CMAKE_DIR} ${CMAKE_MODULE_PATH})
 
 # Don't force a build type in mutli-configuration platforms
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-    set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
 endif()
 
 
@@ -63,7 +63,7 @@ endif()
 option(fletch_BUILD_WITH_PYTHON "Build with Python support where appropriate" FALSE)
 
 set(fletch_PYTHON_MAJOR_VERSION "2" CACHE STRING
-    "Python version to use: 3, 2, or empty")
+  "Python version to use: 3, 2, or empty")
 set_property(CACHE fletch_PYTHON_MAJOR_VERSION PROPERTY STRINGS "3" "2")
 
 if (fletch_BUILD_WITH_PYTHON)

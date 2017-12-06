@@ -15,7 +15,7 @@ if (WIN32)
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
-  )
+    )
   fletch_external_project_force_install(PACKAGE FFmpeg_dev)
 
   ExternalProject_Add(FFmpeg_shared
@@ -26,7 +26,7 @@ if (WIN32)
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
-  )
+    )
   fletch_external_project_force_install(PACKAGE FFmpeg_shared)
 
   # directly install prebuilt-binaries and shared libraries on windows
@@ -37,20 +37,20 @@ if (WIN32)
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ${CMAKE_COMMAND}
-      -DFFmpeg_dev_SOURCE=${fletch_BUILD_PREFIX}/src/FFmpeg_dev
-      -DFFmpeg_shared_SOURCE=${fletch_BUILD_PREFIX}/src/FFmpeg_shared
-      -DFFmpeg_INSTALL=${fletch_BUILD_INSTALL_PREFIX}
-      -DFFmpeg_PATCH=${FFmpeg_patch}
-      -P "${FFmpeg_patch}/Install.cmake"
+    -DFFmpeg_dev_SOURCE=${fletch_BUILD_PREFIX}/src/FFmpeg_dev
+    -DFFmpeg_shared_SOURCE=${fletch_BUILD_PREFIX}/src/FFmpeg_shared
+    -DFFmpeg_INSTALL=${fletch_BUILD_INSTALL_PREFIX}
+    -DFFmpeg_PATCH=${FFmpeg_patch}
+    -P "${FFmpeg_patch}/Install.cmake"
     # no patch command on windows
-  )
+    )
   fletch_external_project_force_install(PACKAGE FFmpeg)
 
 else ()
   if (NOT PYTHON_EXECUTABLE)
     message(STATUS "Building FFmpeg requires yasm which requires python to build. Searching for PYTHON_EXECUTABLE")
     include(CommonFindMacros)
-	fletch_FIND_PYTHON()
+    fletch_FIND_PYTHON()
   endif()
   include(External_yasm)
   set(fletch_YASM ${fletch_BUILD_PREFIX}/src/yasm-build/yasm)
@@ -76,17 +76,17 @@ else ()
 
   set(FFMPEG_CONFIGURE_COMMAND
     ${fletch_BUILD_PREFIX}/src/FFmpeg/configure
-        --prefix=${fletch_BUILD_INSTALL_PREFIX}
-        --enable-shared
-        --disable-static
-        --enable-runtime-cpudetect
-        --enable-zlib
-        ${_FFmpeg_yasm}
-        --cc=${CMAKE_C_COMPILER}
-        --cxx=${CMAKE_CXX_COMPILER}
-        # enable-rpath allows libavcodec to find libswresample
-        --enable-rpath
-  )
+    --prefix=${fletch_BUILD_INSTALL_PREFIX}
+    --enable-shared
+    --disable-static
+    --enable-runtime-cpudetect
+    --enable-zlib
+    ${_FFmpeg_yasm}
+    --cc=${CMAKE_C_COMPILER}
+    --cxx=${CMAKE_CXX_COMPILER}
+    # enable-rpath allows libavcodec to find libswresample
+    --enable-rpath
+    )
 
   if (_FFmpeg_version VERSION_LESS 3.3.0)
     # memalign-hack is only needed for windows and older versions of ffmpeg
@@ -109,7 +109,7 @@ else ()
     CONFIGURE_COMMAND ${FFMPEG_CONFIGURE_COMMAND}
     BUILD_COMMAND ${MAKE_EXECUTABLE}
     INSTALL_COMMAND ${MAKE_EXECUTABLE} install
-  )
+    )
   fletch_external_project_force_install(PACKAGE FFmpeg)
 endif ()
 
