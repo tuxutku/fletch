@@ -1,5 +1,11 @@
 # libjpeg-turbo External project
 
+if (NOT PYTHON_EXECUTABLE)
+  message(STATUS "Building libjpeg-turbo requires yasm which requires python to build. Searching for PYTHON_EXECUTABLE")
+  include(CommonFindMacros)
+  fletch_FIND_PYTHON()
+endif()
+
 include(External_yasm)
 list(APPEND libjpeg-turbo_DEPENDS yasm)
 

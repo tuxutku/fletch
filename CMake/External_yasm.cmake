@@ -16,6 +16,7 @@ if (NOT _external_yasm_include)
       INSTALL_COMMAND ""
       CMAKE_ARGS
         -DCMAKE_BUILD_TYPE=Release
+		-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON_EXECUTABLE}
         -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
         -DBUILD_SHARED_LIBS=OFF
     )
